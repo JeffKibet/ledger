@@ -7,8 +7,11 @@ function uid() {
 }
 
 function parseDollarsToCents(input) {
+    //wrap a string constractor, get rid of whitespace
   const str = String(input).trim();
+  //use regex to match that the input is a digit
   const match = /^(\d+)(\.(\d{1,2}))?$/.exec(str);
+  //edge casing if the number is not a number, return null
   if (!match) return null;
   const dollars = parseInt(match[1], 10);
   const centsFraction = (match[3] || "").padEnd(2, "0");
