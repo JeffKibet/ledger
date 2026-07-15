@@ -1,24 +1,43 @@
-// the function will assist other functions
+// the functions will assist other function
 
-function uuid() {}
+function uid() {
+  return crypto.randomUUID
+    ? crypto.randomUUID()
+    : "id-" + Math.random().toString(36).slice(2) + Date.now();
+}
 
-function parseDollarsToCents(input) {}
+function parseDollarsToCents(input) {
+  const str = String(input).trim();
+  const match = /^(\d+)(\.(\d{1,2}))?$/.exec(str);
+  if (!match) return null;
+  const dollars = parseInt(match[1], 10);
+  const centsFraction = (match[3] || "").padEnd(2, "0");
+  const cents = parseInt(centsFraction, 10);
+  return dollars * 100 + cents;
+}
 
 function formatCents(cents) {
-    const sign = cents < 0 ? '-' : '';
-    const abs = Math.abs(cents);
-    const dollars = Math.floor(abs / 100);
-    const reminder = abs % 100;
-    return sign + '$' + dollars + '.' + String(reminder)
+  const sign = cents < 0 ? "-" : "";
+  const abs = Math.abs(cents);
+  const dollars = Math.floor(abs / 100);
+  const remainder = abs % 100;
+  return sign + "$" + dollars.toLocaleString() + "." + String(remainder);
 }
 
 function todayLocalISODate() {
-    const todayDate = new Date();
-    return todayDate.getFullYear() + '-' + String(todayDate.getMonth() + 1)
+  const todayDate = new Date();
+  return (
+    todayDate.getFullYear() +
+    "-" +
+    String(todayDate.getMonth() + 1) +
+    "-" +
+    String(todayDate.getDate())
+  );
 }
 
 function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str == null ? "" : String(str);
-    return div.innerHTML;
+  const div = document.createElement("div");
+  // tenary operator( one line if statement)
+  div.textContent = str == null ? "" : String(str);
+  return div.innerHTML;
 }
