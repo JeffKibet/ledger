@@ -4,8 +4,8 @@
       "id": "1",
       "categories": [
         {
-          "id": "cA",
-          "name": "FromTabA",
+          "id": "one",
+          "name": "Groceries",
           "kind": "expense"
         }
       ],
