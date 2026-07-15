@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledger</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <div class="wrap">
+
+    <header>
+        <h1>The <span class="led">Ledger</span></h1>
+        <div class="balance-block">
+        <div class="balance-label">Net balance</div>
+        <div class="balance-value" id="balanceValue">0.00</div>
+        </div>
+    </header>
+
+    <section>
+        <h2>New category</h2>
+        <div class="panel">
+        <form id="categoryForm">
+            <div class="field">
+            <label for="catName">Name</label>
+            <input id="catName" type="text" maxlength="60" placeholder="e.g. Groceries" required>
+            </div>
+            <div class="field" style="flex: 0 1 140px;">
+            <label for="catKind">Kind</label>
+            <select id="catKind">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+            </select>
+            </div>
+            <button type="submit">Add category</button>
+        </form>
+        <div class="error-msg" id="categoryError"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Categories</h2>
+        <div class="cat-grid" id="categoryGrid"></div>
+    </section>
+
+    <section>
+        <h2>New transaction</h2>
+        <div class="panel">
+        <form id="transactionForm">
+            <div class="field" style="flex: 1 1 160px;">
+            <label for="txnCategory">Category</label>
+            <select id="txnCategory" required></select>
+            </div>
+            <div class="field" style="flex: 0 1 130px;">
+            <label for="txnAmount">Amount</label>
+            <input id="txnAmount" type="number" step="0.01" min="0.01" placeholder="0.00" required>
+            </div>
+            <div class="field" style="flex: 0 1 150px;">
+            <label for="txnDate">Date</label>
+            <input id="txnDate" type="date" required>
+            </div>
+            <div class="field" style="flex: 1 1 200px;">
+            <label for="txnNote">Note</label>
+            <input id="txnNote" type="text" maxlength="140" placeholder="optional">
+            </div>
+            <button type="submit">Add entry</button>
+        </form>
+        <div class="error-msg" id="transactionError"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="filter-row">
+        <h2 style="margin:0; flex:1;">Entries</h2>
+        <select id="filterCategory">
+            <option value="">All categories</option>
+        </select>
+        </div>
+        <div class="panel">
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Note</th>
+                <th style="text-align:right;">Amount</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="txnBody"></tbody>
+        </table>
+        </div>
+    </section>
+
+    <footer>
+        <button class="reset" id="resetBtn" type="button">Clear all data</button>
+    </footer>
+    <!-- Edit Category Modal -->
+        <div id="editModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h2>Edit Category</h2>
+                <div class="field">
+                    <label for="editCatName">Category Name</label>
+                    <input type="text" id="editCatName" maxlength="60">
+                </div>
+                <div style="margin-top: 20px; display:flex; gap: 10px;">
+                    <button type="button" id="saveEditBtn">Save Changes</button>
+                    <button type="button" class="reset" id="cancelEditBtn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./src/utils.js"></script>
+    <script src="src/store.js"></script>
+    <script src="src/render.js"></script>
+    <script src="src/domain.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>

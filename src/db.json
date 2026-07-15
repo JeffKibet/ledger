@@ -1,0 +1,16 @@
+{
+  "state": [
+    {
+      "id": "1",
+      "categories": [
+        {
+          "id": "cA",
+          "name": "FromTabA",
+          "kind": "expense"
+        }
+      ],
+      "transactions": [],
+      "version": 2
+    }
+  ]
+}
