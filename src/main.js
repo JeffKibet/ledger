@@ -12,6 +12,7 @@ async function init(){
         state.transactions = loaded_state.transactions;
     }
     catch (err) {
+        //
 }
 renderBalance(state.transactions);
 }
