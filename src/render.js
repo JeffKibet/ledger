@@ -15,13 +15,38 @@ function renderCategories(categories, transactions) {
 
   if(categories.length === 0) {
     grid.innerHTML = <div class="cat empty">No categories yet</div>;
+  }else{
+    grid.innerHTML = categories
+      .slice()
+      .sort((first, second) => first.name.localeCompare(second.name))
+      .map(
+        item => {
+          const total = categoryTotalinCents(item.id, transactions);
+          return``
+        }
+      )
+      .join("");
   }
 }
 
-function renderTransactions(categories, transactions) {}
+function renderTransactions(categories, transactions) {
+  const txnBody =document.getElementById("txnBody");
+  let rows = transactions.slice()
+
+  if(rows.length === 0) {
+    txnBody.innerHTML = `<tr class="empty row"><td colspan="4">No transactions yet</td></tr>`;
+    return;
+  }
+}
 
 function renderAllFunctions(state) {
   renderBalance(state.transactions);
   renderCategories(state.categories, state.transactions);
   renderTransactions(state.categories, state.transactions);
+}
+
+function categoryTotalinCents(categoryId, transactions) {
+  return transaction
+  .filter()
+  .reduce(sum, t => sum + t.amountCents, 0);
 }

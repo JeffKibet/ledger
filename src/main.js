@@ -14,5 +14,21 @@ async function init(){
     catch (err) {
         //
 }
-renderBalance(state.transactions);
+renderAllFunctions(state);
+setEventListeners();
+}
+
+function eventListeners(){
+    document.getElementById("categoryForm").addEventListener("submit", handleCategorySubmit);
+    event.preventDefault();
+
+    try{
+        addCategories(
+            state.categories,
+            document.getElementById("catName").value,
+            document.getElementById("catKind").value
+        );
+    }
+)
+    }
 }
